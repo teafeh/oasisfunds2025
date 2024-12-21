@@ -7,63 +7,6 @@ function toggleMenu() {
 }
 
 
-const slider = document.querySelector('.card-slider');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-
-let currentIndex = 0 ;
-
-function updateSlider() {
-  const cardWidth = slider.querySelector('.card').offsetWidth;
-  slider.style.transform = `translateX(-${currentIndex * (cardWidth + 20)}px)`;
-}
-
-nextBtn.addEventListener('click', () => {
-  if (currentIndex < slider.children.length - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-});
-
-prevBtn.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
-  }
-});
-
-window.addEventListener('resize', updateSlider);
-
-
-
-
-const testimonials = document.querySelectorAll('.testimonial');
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button');
-let currentTestimonial = 0;
-
-function showTestimonial(index) {
-    testimonials.forEach((testimonial, i) => {
-        testimonial.classList.remove('active');
-        if (i === index) {
-            testimonial.classList.add('active');
-        }
-    });
-}
-
-prevButton.addEventListener('click', () => {
-    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-    showTestimonial(currentTestimonial);
-});
-
-nextButton.addEventListener('click', () => {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    showTestimonial(currentTestimonial);
-});
-
-// Initialize with the first testimonial visible
-showTestimonial(currentTestimonial);
-
 
 
 
