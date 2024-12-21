@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-in OasisFunds</title>
+    <link rel="stylesheet" href="/css/signin.css">
+</head>
+<body>
+     <!--header-->
+     <header>
+        <!--navbar-->
+            <nav class="navbar">
+                <div class="logo">OasisFunds</div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                <div class="auth-buttons">
+                    <button class="sign-in"><a href="/signin.html">SIGN IN</a></button>
+                    <button class="sign-up"><a href="/signup.html">SIGN UP</a></button>
+                </div>
+            </div>
+            </nav>
+      <!--navbar end-->
+      <main class="login-container">
+        <div class="login-box">
+            <h1>Welcome back!</h1>
+            <p>Login into your account</p>
+            <form action="php.post">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required/>
+                </div>
+                <div class="input-group">
+                    <label for="password">password</label>
+                    <input type="password" id="password" required/>
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password</a>
+                </div>
+                <button class="btn-primary" type="submit"><a href="">Login In</a></button>
+                <button class="btn-google" type="button">
+                    <img src="/img/google.png" alt="google"> <a href="">Coutinue with Google</a>
+                </button>
+            </form>
+        </div>
+      </main>
+      
+</body>
+</html>
