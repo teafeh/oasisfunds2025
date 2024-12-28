@@ -157,6 +157,13 @@ body {
   margin: 10px 0; /* Spacing around the dashed line */
 }
 
+.card .value-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Optional spacing */
+}
+
 .diamond {
   font-size: 2rem;
   color: #9ed7ce;
