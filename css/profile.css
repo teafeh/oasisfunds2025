@@ -1,20 +1,16 @@
 /* General Styles */
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
-        }
+}
 
-        body {
+body {
             font-family: Arial, sans-serif;
             background-color: #0B1E2D;
             color: white;
             display: flex;
-        }body {
-  font-family: Arial, sans-serif;
-  background-color: #0B1E2D;
-  color: #FFFFFF;
 }
 
 .sidebar {
