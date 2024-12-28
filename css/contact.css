@@ -10,77 +10,121 @@ body {
     color: #f4f4f4;
     line-height: 1.6;
 }
-
-header {
-    background-color: #002b46;
+/* Header Section */
+.header {
     padding: 10px 20px;
-}
-
-.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
+    position: relative;
 }
 
-.logo{
-    font-size: 1.5rem;
-    font-weight: bold;
+.logo {
+    height: 35px;
+    border-radius: 25px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links ul {
-    list-style: none;
-    display: flex;
-    margin-left: 40px;
-}
-
-.nav-links ul li {
-    padding-left: 30px;
-}
-
-
-.nav-links a {
-    color: #f4f4f4;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #90cdf4;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.auth-buttons a {
-    border: 1px solid #90cdf4;
-    background: transparent;
-    color: #f4f4f4;
-    padding: 5px 10px;
-    border-radius: 4px;
+.menu-icon {
+    font-size: 30px;
+    color: white;
     cursor: pointer;
-    transition: all 0.3s;
 }
 
-.auth-buttons a:hover {
-    color: #90cdf4;
-    background: #f4f4f4;
+
+/* Side Menu styles */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Initially hide the menu by positioning it outside */
+    width: 25%;  /* Ensure it covers the whole width */
+    height: 100%; /* Ensure it covers the whole height */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    transition: 0.3s; /* Smooth transition for sliding */
+    padding-top: 60px; /* Padding for the navigation items */
+    z-index: 1111; /* Ensure it is above all other content */
 }
 
-.auth-buttons .sign-up {
-    border: #0C4B6E;
-    background-color: #0C4B6E;
+.side-menu nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
-.auth-buttons .sign-up:hover {
-    color: #0464a0;
-    background: #f4f4f4;
+.side-menu nav ul li {
+    margin: 20px 0;
+}
+
+.side-menu nav ul li a {
+    border: solid 2 #00c3ff;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Close Button (Cancel) */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 36px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Menu open state */
+.side-menu.open {
+    right: 0; /* Move the menu into view */
+}
+
+/* To close the side menu when clicking outside */
+body.menu-open {
+    overflow: hidden; /* Prevent page scroll when menu is open */
+}
+
+@media (max-width: 768px){
+
+    .side-menu nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially hide the menu by positioning it outside */
+        width: 100%;  /* Ensure it covers the whole width */
+        height: 100%; /* Ensure it covers the whole height */
+        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+        transition: 0.3s; /* Smooth transition for sliding */
+        padding-top: 60px; /* Padding for the navigation items */
+        z-index: 1111; /* Ensure it is above all other content */
+    }
+
+}
+
+@media (max-width: 480px){
+
+    .side-menu nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 8px;
+    }
+    
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initially hide the menu by positioning it outside */
+        width: 100%;  /* Ensure it covers the whole width */
+        height: 100%; /* Ensure it covers the whole height */
+        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+        transition: 0.3s; /* Smooth transition for sliding */
+        padding-top: 60px; /* Padding for the navigation items */
+        z-index: 1111; /* Ensure it is above all other content */
+    }
+
 }
 
 .hero {

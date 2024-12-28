@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <div class="dashboard">
+    <div class="sidebar">
+      <img src="/img/logo/logopg1.jpg" alt="Logo">
+      <a href="/acct/dashboard.html" class="active">Dashboard</a>
+      <a href="/acct/profile.html">Profile</a>
+      <a href="/acct/payment.html">Payment</a>
+      <a href="#">Referrals</a>
+      <a href="#">Help</a>
+      <a href="#" class="logout">Logout</a>
+    </div>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Dashboard</h1>
+        <img src="avatar.png" alt="User Avatar">
+      </div>
+
+      <div class="dashboard">
+        <!-- Balance Card -->
+        <div class="card">
+            <h3>My Balance</h3>
+            <div class="value">$5,075.00</div>
+            <p>You've made an extra of $75 today</p>
+            <div class="graph">
+                <p>$75 USD <span style="color: green;">+1.5%</span></p>
+            </div>
+        </div>
+
+        <!-- Parent Card for Capital and Referrals -->
+        <div class="card">
+          <div class="inline-card-container">
+            <!-- Capital and Expected Return -->
+            <div class="card">
+              <div class="card">
+                <h3>Capital Invested</h3>
+                <div class="value">$5,000.00</div>
+              </div>
+              <div class="card">
+                <h3>Expected Return</h3>
+                <div class="value">$7,250.00</div>
+              </div>
+            </div>
+
+            <!-- Referrals and Rewards -->
+            <div class="card">
+              <h3>Referral Reward</h3>
+              <div class="value-container">
+                <div class="value">$200.00</div>
+                <div class="diamond">&#x1F48E;</div>
+              </div>
+              
+              
+              <!-- Dashed line -->
+              <div class="separator"></div>
+              
+              <div class="referrals">
+                <div>
+                  <h3>Number of referrals</h3>
+                  <div class="value">30 Oasis</div>
+                </div>
+                
+                <div class="status">
+                  <span>Active - 20</span>
+                  <span>Inactive - 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart">
+        <h2>Statistics</h2>
+        <canvas id="statsChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ensure internet connectivity to properly load the external Chart.js library below -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-up OasisFunds</title>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+      <!--header-->
+    <header>
+        <!--navbar-->
+            <nav class="navbar">
+                <div class="logo">OasisFunds</div>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                <div class="auth-buttons">
+                    <!--<button class="sign-in"><a href="#">SIGN IN</a></button>
+                    <button class="sign-up"><a href="#">SIGN UP</a></button>-->
+                    <a href="/signin.html" class="sign-in">SIGN IN</a>
+                    <a href="/signup.html" class="sign-up">SIGN UP</a>
+                </div>
+            </div>
+            </nav>
+      <!--navbar end-->
+    </header>
+    <main class="signup-container">
+        <h1 class="signup-title">Oasisfund</h1>
+        <h2 class="signup-subtitle">Sign Up</h2>
+        <form action="" class="signup-form">
+            <div class="signup-form-pad">
+                <div class="input-row">
+                    <div class="input-block">
+                            <label for="First-Name">First Name</label>
+                            <input type="text" required />
+                    </div>
+                    <div class="input-block">
+                        <div class="input-pad">
+                            <label for="Last-Name">Last Name</label>
+                            <input type="text" required />
+                        </div> 
+                    </div>
+                </div>
+                <div class="input-block">
+                <label for="Email">Email</label>
+                <input type="email" required/>
+                </div>
+                <div class="input-row">
+                    <div class="input-block">
+                    <label for="password">Password</label>
+                    <input type="password" required/>
+                    </div>           
+                    <div class="input-block">
+                        <div class="input-pad-2">
+                            <label for="Comfirm-password">Comfirm Password</label>
+                    <input type="password" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" required/>
+                    <label for="terms">I Agree to the <a href="/term-condition.html">Term</a> and <a href="/privacy-policy.html">Privacy</a></label>
+                </div>
+                <button type="submit" class="btn-submit">Sign Up Now!</button>
+            </div> 
+        </form>
+
+    </main>
+
+</body>
+</html>

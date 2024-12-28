@@ -9,25 +9,30 @@
 <body>
     <!--header-->
     <header>
-        <!--navbar-->
-            <nav class="navbar">
-                <div class="logo">OasisFunds</div>
-                <div class="nav-links">
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                <div class="auth-buttons">
-                    <!--<button class="sign-in"><a href="#">SIGN IN</a></button>
-                    <button class="sign-up"><a href="#">SIGN UP</a></button>-->
-                    <a href="/signin.html" class="sign-in">SIGN IN</a>
-                    <a href="/signup.html" class="sign-up">SIGN UP</a>
-                </div>
-            </div>
-            </nav>
-      <!--navbar end-->
-    </header>
+        <section class="header">
+            <img class="logo" src="/img/logo/logogp2.jpg" alt="logo">
+           <div class="menu-icon" onclick="toggleMenu()">☰</div>
+           </section>
+           <section class="hero">
+               <div class="hero-content">
+                   <h1>Own your Future with <br> <span class="brand">OasisFunds</span></h1>
+               <p>Your journey towards intelligent, data-driven investment chioces begins right here.</p>
+              <a href="/acct/signup.html" class="cta">Get Started</a>
+               </div>
+           </section>
+   </header>
+   <div id="sideMenu" class="side-menu">
+    <div class="close-btn" onclick="toggleMenu()">×</div>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/contact.html" class="active">Contact Us</a></li>
+            <li><a href="/acct/signin.html" class="sign-in">SIGN IN</a></li>
+            <li><a href="/acct/signup.html" class="sign-up">SIGN UP</a></li>
+        </ul>
+    </nav>
+</div>
     <main>
         <section class="hero">
             <p>Contact</p>
@@ -116,7 +121,7 @@
         <div class="footer-buttom">
             <p>&copy;2024 OasisFunds. All rights Reserved</p>
         </div>
-
+        <script src="/js/main.js"></script>
     </footer>
 </body>
 </html>

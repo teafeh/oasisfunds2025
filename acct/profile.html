@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo">
+        <a href="/acct/dashboard.html">Dashboard</a>
+        <a href="/acct/profile.html" class="active">Profile</a>
+        <a href="/acct/payment.html">Payment</a>
+        <a href="#">Referrals</a>
+        <a href="#">Help</a>
+        <a href="#" class="logout">Logout</a>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="user">Ayodele Motunrayo</div>
+        </div>
+        <div class="form-container">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+            <h2>Edit Profile</h2>
+            <form>
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" placeholder="Enter full name">
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" placeholder="Enter new password">
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm password">
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
