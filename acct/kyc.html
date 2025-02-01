@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="/css/kyc.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <a href="/acct/profile.html">Profile</a>
+            <a href="/acct/payment.html">Payment</a>
+            <a href="/acct/referral.html">Referral</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Verification</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/kyc.html" id="persona-link" onclick="showContent(event, 'Deposit')">KYC</a>
+                    <a href="/acct/kyc-2.html" id="bank-details-link" onclick="showContent(event, 'bankDetails')">KYC-2</a>
+                </div>
+            </div>
+            <a href="/acct/help.html">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="form-container">
+            <h2>Proof of Identity</h2>
+            <form id="kycForm">
+                <label for="country">Your Country</label>
+                <select id="country" name="country" required>
+                    <option value="">Select your country</option>
+                    <option value="canada">Canada</option>
+                    <option value="nigeria">Nigeria</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="usa">United States</option>
+                </select>
+
+                <label for="documentType">Document Type</label>
+                <select id="documentType" name="documentType" required>
+                    <option value="">Select a document type</option>
+                    <option value="passport">Passport</option>
+                    <option value="id">National ID</option>
+                    <option value="license">Driver's License</option>
+                </select>
+
+                <label for="frontUpload">Front side of your document</label>
+                <div class="file-upload" onclick="document.getElementById('frontUpload').click();">
+                    Click to upload the front side
+                </div>
+                <input type="file" id="frontUpload" name="frontUpload" accept="image/*" style="display: none;" required>
+                <img id="frontPreview" class="image-preview" alt="Front side preview" style="display: none; max-width: 100%; height: auto; margin-top: 10px;">
+
+                <label for="backUpload">Back side of your document</label>
+                <div class="file-upload" onclick="document.getElementById('backUpload').click();">
+                    Click to upload the back side
+                </div>
+                <input type="file" id="backUpload" name="backUpload" accept="image/*" style="display: none;" required>
+                <img id="backPreview" class="image-preview" alt="Back side preview" style="display: none; max-width: 100%; height: auto; margin-top: 10px;">
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="confirm" name="confirm" required>
+                    <label for="confirm">I confirm that I upload a valid government-issued photo ID. This ID includes my picture, name, signature, date of birth, and address.</label>
+                </div>
+
+                <button type="submit">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const apiBaseUrl = "https://your-api-endpoint.com"; // Replace with your API's base URL
+
+        function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdown = event.target.closest('.dropdown');
+    dropdown.classList.toggle('open');
+}
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const kycForm = document.getElementById("kycForm");
+            const frontUpload = document.getElementById("frontUpload");
+            const frontPreview = document.getElementById("frontPreview");
+            const backUpload = document.getElementById("backUpload");
+            const backPreview = document.getElementById("backPreview");
+
+            // Preview image functionality
+            const previewImage = (fileInput, previewElement) => {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewElement.src = e.target.result;
+                        previewElement.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            frontUpload.addEventListener("change", () => previewImage(frontUpload, frontPreview));
+            backUpload.addEventListener("change", () => previewImage(backUpload, backPreview));
+
+            kycForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(kycForm);
+
+                try {
+                    const response = await fetch(`${apiBaseUrl}/kyc/submit`, {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (!response.ok) throw new Error("Failed to submit KYC data.");
+
+                    const result = await response.json();
+                    alert("KYC submitted successfully: " + result.message);
+                } catch (error) {
+                    console.error(error);
+                    alert("An error occurred while submitting your KYC data. Please try again.");
+                }
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.querySelector('.logout');
+  
+    // Add event listener for the logout button
+    if (logoutButton) {
+      logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();  // Prevent the default anchor behavior
+  
+        // Call the logout function
+        logout();
+      });
+    }
+  });
+  
+  // Logout function
+  function logout() {
+    // Remove token from localStorage (or sessionStorage if applicable)
+    localStorage.removeItem('token');  // or sessionStorage.removeItem('token');
+    
+    // Optionally clear other authentication-related data
+    // localStorage.removeItem('user'); // Example: remove user data
+  
+    // Redirect to the login page (or home page, depending on your setup)
+    window.location.href = '/acct/signin.html';  // Replace with the appropriate redirect URL
+  }
+    </script>
+</body>
+</html>

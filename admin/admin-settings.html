@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin-setting.css">
+</head>
+<body>
+    <div class="sidebar">
+      <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo" />
+      <nav>
+        <a href="/admin/admin-dashboard.html"><img src="/img/svg/speedometer2.svg" alt="Dashboard" class="svg" />Dashboard</a>
+        <a href="/admin/user.html"><img src="/img/svg/person-plus.svg" alt="user account" class="svg" />User Accounts</a>
+        <a href="/admin/admin-payment.html"><img src="/img/svg/credit-card.svg" alt="payment" class="svg" />Payment</a>
+        <a href="#"><img src="/img/svg/bank2.svg" alt="transcation" class="svg" />Transcations</a>
+        <a href="/admin/admin-settings.html" class="active"><img src="/img/svg/gear.svg" alt="Settings" class="svg" />Settings</a>
+      </nav>
+      <a href="#" class="logout">
+        <img src="/img/logout-icon.png" alt="Logout" class="logout-icon" />
+      </a>
+    </div>
+
+    <main class="main-content">
+        <header class="header">
+          <h1>Settings</h1>
+        </header>
+  
+        <section class="settings-form">
+          <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="min-withdrawal">Minimum Withdrawal</label>
+                <input type="text" id="min-withdrawal" placeholder="Enter amount">
+              </div>
+              <div class="form-group">
+                <label for="max-withdrawal">Maximum Withdrawal</label>
+                <input type="text" id="max-withdrawal" placeholder="Enter amount">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group">
+                <label for="min-deposit">Minimum Deposit</label>
+                <input type="text" id="min-deposit" placeholder="Enter amount">
+              </div>
+              <div class="form-group">
+                <label for="max-deposit">Maximum Deposit</label>
+                <input type="text" id="max-deposit" placeholder="Enter amount">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <div class="form-group">
+                <label for="referral-percentage">Referral Percentage</label>
+                <input type="text" id="referral-percentage" placeholder="Enter percentage">
+              </div>
+              <div class="form-group">
+                <label for="return-percentage">Returns Percentage</label>
+                <input type="text" id="return-percentage" placeholder="Enter percentage">
+              </div>
+            </div>
+  
+            <div class="form-row">
+              <button type="submit" class="save-button">Save Change</button>
+            </div>
+          </form>
+        </section>
+      </main>
+</body>
+</html>

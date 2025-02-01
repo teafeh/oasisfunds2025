@@ -1,0 +1,167 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0b1e2d;
+  color: white;
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #102a44;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.sidebar nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: block;
+  background-color: #12395b;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.sidebar nav a:hover {
+  background-color: #1c5075;
+}
+
+.sidebar a.active {
+  background-color: #5eead4;
+  color: #102a44;
+  font-weight: bold;
+}
+
+
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.logout:hover {
+  color: #62e3b5;
+}
+
+.logout-icon {
+  color: #62e3b5;
+  width: 20px;
+  height: 20px;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background-color: #173149;
+  color: #00c4cc;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background-color: #00c4cc;
+  color: #173149;
+}
+
+.request-table {
+  background-color: #173149;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.request-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #1e3a55;
+}
+
+.request-row:last-child {
+  border-bottom: none;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #aaa;
+  border-radius: 50%;
+}
+
+.user-info h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+button.approve {
+  background-color: #00c4cc;
+  color: #173149;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.decline {
+  background-color: #1e3a55;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}

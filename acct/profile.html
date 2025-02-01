@@ -3,42 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Profile Page</title>
+    <title>Profile OasisFunds</title>
     <link rel="stylesheet" href="/css/profile.css">
 </head>
 <body>
     <div class="sidebar">
-        <img src="/img/logo/logopg1.jpg" alt="Logo">
-        <a href="/acct/dashboard.html">Dashboard</a>
-        <a href="/acct/profile.html" class="active">Profile</a>
-        <a href="/acct/payment.html">Payment</a>
-        <a href="#">Referrals</a>
-        <a href="#">Help</a>
-        <a href="#" class="logout">Logout</a>
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Profile</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/profile.html">Persona</a>
+                    <a href="/acct/bank-details.html" onclick="showContent(event, 'bankDetails')">Bank Details</a>
+                </div>
+            </div>
+            <a href="/acct/payment.html">Payment</a>
+            <a href="/acct/referral.html">Referral</a>
+            <a href="/acct/kyc.html">Verification</a>
+            <a href="/acct/help.html">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
     </div>
+  
     <div class="content">
-        <div class="header">
-            <div class="user">Ayodele Motunrayo</div>
-        </div>
-        <div class="form-container">
-            <img src="https://via.placeholder.com/100" alt="Profile Picture">
-            <h2>Edit Profile</h2>
-            <form>
-                <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter username">
-
-                <label for="full-name">Full Name</label>
-                <input type="text" id="full-name" placeholder="Enter full name">
-
-                <label for="new-password">New Password</label>
-                <input type="password" id="new-password" placeholder="Enter new password">
-
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" placeholder="Confirm password">
-
-                <button type="submit">Save Changes</button>
-            </form>
+        <div id="content-area" class="content-container">
+            <!-- Default Content -->
+            <h2>Persona</h2>
+            <div class="form-container">
+                <img src="/img/profile.jpg" alt="" class="avatar">
+                <form id="persona-form">
+                    <input type="text" name="first_name" placeholder="First Name">
+                    <input type="text" name="last_name" placeholder="Last Name">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="password" placeholder="New Password">
+                </form>                
+                <div class="cta">
+                    <button onclick="savePersona()">Save Changes</button>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="/js/profile.js"></script>
 </body>
 </html>

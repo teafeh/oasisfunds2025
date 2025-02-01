@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral OasisFunds</title>
+    <link rel="stylesheet" href="/css/referral.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <a href="/acct/profile.html">Profile</a> 
+            <a href="/acct/payment.html">Payment</a>
+            <a href="/acct/referral.html" class="active">Referral</a>
+            <a href="/acct/kyc.html">Verification</a>
+            <a href="/acct/help.html">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+          <h1>Referral</h1>
+        </div>
+    
+        <div class="referral-section">
+          <div class="input-group">
+            <label for="referral-code">Referral Code</label>
+            <input type="text" id="referral-code" readonly>
+            <label for="referral-link">Referral Link</label>
+            <input type="text" id="referral-link" readonly>
+          </div>
+          <button id="invite-button" class="invite-button">Invite Friends</button>
+        </div>
+    
+        <div class="how-it-works">
+          <h2>How it works</h2>
+          <p>Share your referral code or link with your friends. Your friends need to sign up with your referral code. You will receive a bonus of 5% every time your friends sign up.</p>
+        </div>
+    
+        <div class="stats" id="stats">
+          <!-- Stats will be dynamically loaded -->
+        </div>
+    
+        <div class="referral-list">
+          <h2>My Direct Referral List</h2>
+          <table id="referral-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Email Address</th>
+                <th>My Reward</th>
+                <th>Subscribed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Referral list will be dynamically populated -->
+            </tbody>
+          </table>
+          <div class="view-all">
+            <a href="#">View all →</a>
+          </div>
+        </div>
+      </div>
+
+    <script>
+        const apiBaseUrl = "https://backend-zna0.onrender.com/users/details"; // Replace with your API base URL
+
+        async function fetchReferralData() {
+            try {
+                const response = await fetch(`${apiBaseUrl}/referrals`);
+                if (!response.ok) throw new Error("Failed to fetch referral data.");
+                const data = await response.json();
+
+                // Populate referral code and link
+                document.getElementById("referral-code").value = data.referralCode;
+                document.getElementById("referral-link").value = data.referralLink;
+
+                // Populate stats
+                const statsContainer = document.getElementById("stats");
+                statsContainer.innerHTML = `
+                    <div class="stat-box">
+                        <h3>Direct Paid Members</h3>
+                        <p>${data.directPaidMembers}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Paid Members</h3>
+                        <p>${data.paidMembers}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Non Paid Members</h3>
+                        <p>${data.nonPaidMembers}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total</h3>
+                        <p>${data.totalMembers}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Referral Reward</h3>
+                        <p>$${data.referralReward.toFixed(2)}</p>
+                    </div>
+                `;
+
+                // Populate referral list
+                const referralTableBody = document.querySelector("#referral-table tbody");
+                referralTableBody.innerHTML = data.referralList.map(referral => `
+                    <tr>
+                        <td>${referral.date}</td>
+                        <td>${referral.email}</td>
+                        <td>+$${referral.reward} Oasis</td>
+                        <td>${referral.subscribed}</td>
+                    </tr>
+                `).join("");
+            } catch (error) {
+                console.error("Error fetching referral data:", error);
+                alert("An error occurred while fetching referral data.");
+            }
+        }
+
+        document.getElementById("invite-button").addEventListener("click", () => {
+            navigator.clipboard.writeText(document.getElementById("referral-link").value)
+                .then(() => alert("Referral link copied to clipboard!"))
+                .catch(err => alert("Failed to copy referral link."));
+        });
+
+        // Load referral data on page load
+        window.onload = fetchReferralData;
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.querySelector('.logout');
+  
+    // Add event listener for the logout button
+    if (logoutButton) {
+      logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();  // Prevent the default anchor behavior
+  
+        // Call the logout function
+        logout();
+      });
+    }
+  });
+  
+  // Logout function
+  function logout() {
+    // Remove token from localStorage (or sessionStorage if applicable)
+    localStorage.removeItem('token');  // or sessionStorage.removeItem('token');
+    
+    // Optionally clear other authentication-related data
+    // localStorage.removeItem('user'); // Example: remove user data
+  
+    // Redirect to the login page (or home page, depending on your setup)
+    window.location.href = '/acct/signin.html';  // Replace with the appropriate redirect URL
+  }
+  
+    </script>
+</body>
+</html>

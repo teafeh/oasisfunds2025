@@ -142,6 +142,23 @@ body.menu-open {
     color: aquamarine;
 }
 
+a{
+    background: linear-gradient(to right, #4ecdc4, #90cdf4);
+    color: #f4f4f4;
+    border: none;
+    margin-top: 5px;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+a:hover {
+    background: white;
+    color: #002b46;
+}
 .contact-section {
     display: flex;
     justify-content: center;

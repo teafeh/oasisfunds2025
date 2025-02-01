@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw OasisFunds</title>
+    <link rel="stylesheet" href="/css/payment-withraw.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <a href="/acct/profile.html">Profile</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Payment</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/payment.html" id="persona-link" onclick="showContent(event, 'Deposit')">Deposit</a>
+                    <a href="/acct/payment-withraw.html" id="bank-details-link" onclick="showContent(event, 'bankDetails')">Withdraw</a>
+                </div>
+            </div>
+            
+            <a href="#">Referral</a>
+            <a href="#">Verification</a>
+            <a href="#">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="profile">
+          <h2>Payment</h2>
+          <span>
+              <img src="/img/profile.jpg" alt="Profile Picture">
+          </span>
+      </div>
+      
+      <div class="withdraw-container" id="withdrawContainer">
+        <h1>Withdraw</h1>
+        <h2>Withdrawal method</h2>
+        <div class="buttons">
+          <button class="button" onclick="showContent('returnsWalletContent')">
+            Returns Wallet
+            <span>&rarr;</span>
+          </button>
+          <button class="button" onclick="showContent('referralWalletContent')">
+            Referral Wallet
+            <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+      
+      <div id="returnsWalletContent" class="hidden">
+
+
+        <div class="returns-wallet">
+            <h2>Returns Wallet</h2>
+            <form class="returns-form">
+              <div class="form-group">
+                <label for="recipientAccount">Recipient Account</label>
+                <select id="recipientAccount" name="recipientAccount">
+                  <option value="" disabled selected>Account NO.</option>
+                  <!-- Add more options here -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bankName">Bank Name</label>
+                <input
+                  type="text"
+                  id="bankName"
+                  name="bankName"
+                  placeholder="Type Bank"
+                />
+              </div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input
+                  type="number"
+                  id="amount"
+                  name="amount"
+                  placeholder="Type amount"
+                />
+              </div>
+              <button type="submit" class="withdraw-button">Withdraw</button>
+            </form>
+          </div>
+
+          
+      </div>
+      
+      <div id="referralWalletContent" class="hidden">
+        <div class="referral-wallet">
+  <h2>Referral Wallet</h2>
+  <form class="referral-form">
+    <div class="form-group">
+      <label for="recipientAccount">Recipient Account</label>
+      <select id="recipientAccount" name="recipientAccount">
+        <option value="" disabled selected>Account NO.</option>
+        <!-- Add more options here -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="bankName">Bank Name</label>
+      <input
+        type="text"
+        id="bankName"
+        name="bankName"
+        placeholder="Type Bank"
+      />
+    </div>
+    <div class="form-group">
+      <label for="referralBonusAmount">Referral Bonus Amount</label>
+      <input
+        type="number"
+        id="referralBonusAmount"
+        name="referralBonusAmount"
+        placeholder="Type amount"
+      />
+    </div>
+    <button type="submit" class="withdraw-button">Withdraw</button>
+  </form>
+</div>
+
+      </div>
+      
+              
+          </div>
+      </div>
+
+      
+    <script src="/js/payment-withdraw.js"> </script>
+</body>
+</html>

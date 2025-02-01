@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/admin-payment.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo" />
+      <nav>
+        <a href="/admin/admin-dashboard.html"><img src="/img/svg/speedometer2.svg" alt="Dashboard" class="svg" />Dashboard</a>
+        <a href="/admin/user.html"><img src="/img/svg/person-plus.svg" alt="user account" class="svg" />User Accounts</a>
+        <a href="/admin/admin-payment.html" class="active"><img src="/img/svg/credit-card.svg" alt="payment" class="svg" />Payment</a>
+        <a href="#"><img src="/img/svg/bank2.svg" alt="transcation" class="svg" />Transcations</a>
+        <a href="/admin/admin-settings.html"><img src="/img/svg/gear.svg" alt="Settings" class="svg" />Settings</a>
+      </nav>
+      <a href="#" class="logout">
+        <img src="/img/logout-icon.png" alt="Logout" class="logout-icon" />
+      </a>
+    </div>
+
+    <div class="main-content">
+      <h1>User Accounts</h1>
+      <div class="tabs">
+        <button class="active">Withdrawal Request</button>
+        <button>Funding Request</button>
+      </div>
+
+      <div class="request-table">
+        <div class="request-row">
+          <div class="user-info">
+            <div class="avatar"></div>
+            <div>
+              <h2>Adeola Motunrayo</h2>
+              <p>AdexMonfu</p>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="approve">Approve</button>
+            <button class="decline">Decline</button>
+          </div>
+        </div>
+        <!-- Repeat the row structure for more users -->
+        <div class="request-row">
+          <div class="user-info">
+            <div class="avatar"></div>
+            <div>
+              <h2>Adeola Motunrayo</h2>
+              <p>AdexMonfu</p>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="approve">Approve</button>
+            <button class="decline">Decline</button>
+          </div>
+        </div>
+        <!-- Add more rows as needed -->
+      </div>
+    </div>
+  </body>
+</html>

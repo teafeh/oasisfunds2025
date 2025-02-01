@@ -1,16 +1,16 @@
 /* General Styles */
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-            font-family: Arial, sans-serif;
-            background-color: #0B1E2D;
-            color: white;
-            display: flex;
+   font-family: Arial, sans-serif;
+   background-color: #0B1E2D;
+   color: white;
+   display: flex;
 }
 
 .sidebar {
@@ -22,14 +22,14 @@ body {
   gap: 20px;
 }
 
-.sidebar img {
+.logo {
   width: 50px;
   height: auto;
   border-radius: 25px;
   margin-bottom: 20px;
 }
 
-.sidebar a {
+.sidebar nav a {
   color: #FFFFFF;
   text-decoration: none;
   padding: 10px 15px;
@@ -40,125 +40,225 @@ body {
   text-align: center;
 }
 
-.sidebar a:hover {
+.sidebar nav a:hover {
   background-color: #1C5075;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropdown-toggle {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 0.5rem 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dropdown .dropdown-toggle:hover {
+  background-color: #1a3d5a;
+}
+
+.dropdown .dropdown-menu {
+  display: none;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.dropdown .dropdown-menu a {
+  font-size: 0.7rem; /* Smaller font size */
+  padding-left: 1.2rem; /* Indented */
+}
+
+.dropdown .dropdown-menu a.active {
+  background-color: #62e3b5;
+  color: #062032;
+}
+
+.dropdown .dropdown-menu a:hover {
+  background-color: #1a3d5a;
+}
+
+.dropdown.open .dropdown-menu {
+  display: flex;
+}
 .sidebar a.active {
   background-color: #5eead4;
   color: #102A44;
   font-weight: bold;
 }
 
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.logout:hover {
+  color: #62e3b5;
+}
+
+.logout-icon {
+  color: #62e3b5;
+  width: 20px;
+  height: 20px;
+}
 
 .content {
+  margin-left: 260px;
   flex: 1;
-  padding: 20px;
+  text-align: center;
+  padding: 2rem;
 }
 
-.header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header .user {
-  font-size: 1rem;
-}
-
-.form-container {
-  background-color: #183b56;
-  padding: 30px;
+.content-container {
+  background-color: #123b54;
   border-radius: 10px;
-  max-width: 400px;
+  padding: 2rem;
+  max-width: 600px;
   margin: auto;
 }
 
-.form-container h2 {
-   text-align: center;
-   margin-bottom: 20px;
-   font-size: 1.8rem;
+.content-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.form-container img {
-   display: block;
-   width: 100px;
-   height: 100px;
-   border-radius: 50%;
-   margin: 0 auto 20px;
+.content-container p {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
-.form-container label {
-   display: block;
-   font-size: 1rem;
-   margin-bottom: 5px;
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-.form-container input {
-   width: 100%;
-   padding: 10px;
-   margin-bottom: 15px;
-   border: none;
-   border-radius: 5px;
-   font-size: 1rem;
+.form-container {
+  background-color: #123b54;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
 }
 
-.form-container input:focus {
-  outline: 2px solid #5eead4;
+.form-container .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto 1rem;
 }
 
-.form-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #5eead4;
+.form-container form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-container form input {
+  background-color: #0b2239;
+  border: 1px solid #62e3b5;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: #fff;
+}
+
+.form-container form input::placeholder {
+  color: #9fbfcc;
+}
+
+.form-container .kyc {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-container .kyc a {
+  color: #62e3b5;
+  text-decoration: none;
+  font-size: 1rem;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: color 0.3s;
+}
+
+.form-container .kyc a:hover {
+  color: #4ec59c;
+}
+
+.cta {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.cta button {
+  background-color: #62e3b5;
   border: none;
   border-radius: 5px;
+  padding: 0.75rem 2rem;
+  color: #062032;
   font-size: 1rem;
-  color: #0b1b2b;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.3s;
 }
 
-.form-container button:hover {
-  background-color: #48d1b7;
+ .cta button:hover {
+  background-color: #4ec59c;
 }
 
 @media (max-width: 768px) {
-            body {
-        flex-direction: column;
-         gap: 15px;
-    }
-
+   .form-container form {
+    grid-template-columns: 1fr;
+}
     .sidebar {
-          width: 100%;
+          width: 100px;
           padding: 10px;
      }
+     .content {
+      margin-left: 0;
+  }
+  .form-container form input {
+    background-color: #0b2239;
+    border: 1px solid #62e3b5;
+    border-radius: 5px;
+    padding: 0.5rem;
+    color: #fff;
+    width: 100%; /* Ensure the inputs take up the full width of their parent container */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
 
-            .form-container {
-                padding: 20px;
-            }
 }
  @media (max-width: 480px) {
-    .sidebar a {
+  .sidebar {
+    width: 100px;
+    padding: 10px;
+}
+    .sidebar nav a {
         font-size: 0.8rem;
         padding: 8px;
     }
 
+    .content{
+      text-align: right;
+    }
+
     .form-container {
-        width: 90%;
-        padding: 15px;
+      background-color: #0b2239;
+      border: 1px solid #62e3b5;
+      border-radius: 5px;
+      padding: 0.5rem;
+      color: #fff;
+      width: 100%; /* Ensure the inputs take up the full width of their parent container */
+      box-sizing: border-box; /* Include padding and border in the width */
+  }
     }
-
-    .header .user {
-        font-size: 0.9rem;
-    }
-
-    .form-container h2 {
-        font-size: 1.5rem;
-    }
-
-    .form-container input, .form-container button {
-        font-size: 0.9rem;
-    }
-}

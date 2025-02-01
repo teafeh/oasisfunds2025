@@ -1,6 +1,10 @@
-// script-dash.js
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "https://api.example.com/dashboard"; // Replace with actual API
+  const API_URL = "https://backend-zna0.onrender.com/users/details"; // Replace with the actual API URL
+  const token = localStorage.getItem("token"); // JWT token from local storage
+  if (!token) {
+    alert("User is not authenticated. Please log in.");
+    window.location.href = "/acct/signin.html";
+}
 
   const elements = {
     balance: document.getElementById("balance"),
@@ -17,31 +21,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch data from API
   async function fetchDashboardData() {
     try {
-      const response = await fetch(API_URL);
-      if (!response.ok) throw new Error(`Error: ${response.statusText}`);
+      const response = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
       const data = await response.json();
       updateDashboard(data);
     } catch (error) {
       console.error("Failed to fetch dashboard data:", error.message);
+      alert("Unable to fetch dashboard data. Please try again later.");
     }
   }
 
   // Update dashboard with API data
   function updateDashboard(data) {
-    // Balance
-    elements.balance.textContent = `$${data.balance.toFixed(2)}`;
-    elements.balanceExtra.textContent = `You've made an extra of $${data.extraToday} today`;
-    elements.balanceGraph.innerHTML = `${data.extraToday} USD <span style="color: green;">+${data.percentage}%</span>`;
+    // Wallet Balances
+    const mainWallet = data.wallet.find((wallet) => wallet.wallet_type === "main");
+    const referralWallet = data.wallet.find((wallet) => wallet.wallet_type === "referral");
 
-    // Capital & Returns
-    elements.capital.textContent = `$${data.capital.toFixed(2)}`;
-    elements.return.textContent = `$${data.expectedReturn.toFixed(2)}`;
+    elements.balance.textContent = `$${(mainWallet?.balance + mainWallet?.interest).toFixed(2) || "0.00"}`;
+    elements.capital.textContent = `$${mainWallet?.balance.toFixed(2) || "0.00"}`; // Assuming 'capital' uses the main wallet balance
+    elements.return.textContent = `$${mainWallet?.interest.toFixed(2) || "0.00"}`;
 
     // Referrals
-    elements.referralReward.textContent = `$${data.referralReward.toFixed(2)}`;
-    elements.referralCount.textContent = `${data.totalReferrals} Referrals`;
-    elements.activeReferrals.textContent = `Active: ${data.activeReferrals}`;
-    elements.inactiveReferrals.textContent = `Inactive: ${data.inactiveReferrals}`;
+    elements.referralReward.textContent = `$${referralWallet?.balance.toFixed(2) || "0.00"}`;
+    elements.referralCount.textContent = `${data.activeReferralCount + data.inActiveReferralCount} Referrals`;
+    elements.activeReferrals.textContent = `Active: ${data.activeReferralCount}`;
+    elements.inactiveReferrals.textContent = `Inactive: ${data.inActiveReferralCount}`;
   }
 
   // Initialize Chart.js for statistics
@@ -50,11 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const statsChart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], // Example labels
         datasets: [
           {
             label: "Revenue",
-            data: [10000, 50000, 40000, 70000, 60000, 80000],
+            data: [10000, 50000, 40000, 70000, 60000, 80000], // Example data
             borderColor: "#00FFAA",
             tension: 0.4,
           },
@@ -74,3 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchDashboardData();
   initializeChart();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutButton = document.querySelector('.logout');
+
+  // Add event listener for the logout button
+  if (logoutButton) {
+    logoutButton.addEventListener('click', (e) => {
+      e.preventDefault();  // Prevent the default anchor behavior
+
+      // Call the logout function
+      logout();
+    });
+  }
+});
+
+// Logout function
+function logout() {
+  // Remove token from localStorage (or sessionStorage if applicable)
+  localStorage.removeItem('token');  // or sessionStorage.removeItem('token');
+  
+  // Optionally clear other authentication-related data
+  // localStorage.removeItem('user'); // Example: remove user data
+
+  // Redirect to the login page (or home page, depending on your setup)
+  window.location.href = '/acct/signin.html';  // Replace with the appropriate redirect URL
+}

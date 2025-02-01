@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="/css/upload-payment.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="#">Dashboard</a>
+            <a href="#">Profile</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Payment</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/payment.html" id="persona-link" onclick="showContent(event, 'Deposit')">Deposit</a>
+                    <a href="/acct/payment-withraw.html" id="bank-details-link" onclick="showContent(event, 'bankDetails')">Withdraw</a>
+                </div>
+            </div>
+            
+            <a href="#">Referral</a>
+            <a href="#">Verification</a>
+            <a href="#">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="upload-container">
+            <h2>Upload Proof of Payment</h2>
+            <div class="upload-box" id="previewBox">
+              <div class="icon" id="previewIcon">
+                <img src="/img/upload_icon.jpg" alt="Upload Icon" />
+              </div>
+              <p class="title">Document of your Receipt</p>
+              <p class="subtitle">
+                Upload the Receipt of the bank transfer<br />
+                Support: JPEG, PNG, PDF
+              </p>
+              <label class="file-label">
+                <input id="fileInput" type="file" accept=".jpeg,.png,.pdf" onchange="previewFile()" />
+                <span>Choose a file</span>
+              </label>
+              <p id="fileName"></p>
+            </div>
+            <p class="note">
+              Note: Kindly transfer the exact amount typed and to the wallet address details above.
+            </p>
+            <button class="upload-button" onclick="uploadFile()">Upload</button>
+          </div>
+    </div>
+    
+    <script src="/js/payment.js"> </script>
+</body>
+</html>

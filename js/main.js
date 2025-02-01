@@ -82,77 +82,45 @@ const closePopup = document.getElementById('closePopup');
 const popup = document.getElementById('popup');
 const overlay = document.getElementById('popupOverlay');
 
-// Open Popup
-openPopupLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-        event.preventDefault();
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-    });
-});
-
-// Close Popup
-closePopup.addEventListener('click', () => {
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-});
-
-overlay.addEventListener('click', () => {
-    popup.style.display = 'none';
-    overlay.style.display = 'none';
-});
-
-
-
 
 
 document.getElementById('calculate').addEventListener('click', () => {
   const investment = parseFloat(document.getElementById('investment').value);
   const investmentSpan = parseInt(document.getElementById('investment-span').value);
+  const resultElement = document.getElementById('result');
 
   if (isNaN(investment) || isNaN(investmentSpan)) {
-    document.getElementById('result').innerText = 'Please fill in all fields correctly.';
-    result.style.color = 'red'; // Change the text color to red
+    resultElement.innerText = 'Please fill in all fields correctly.';
+    resultElement.style.color = 'red';
     return;
   }
 
   if (investment < 30) {
-    document.getElementById('result').innerText = 'The minimum investment is $30.';
-    result.style.color = 'red';
-    return;
-
-  }
-
-  if (investmentSpan < 30) {
-    document.getElementById('result').innerText = 'The minimum investment period is 30 days.';
-    result.style.color = 'red';
+    resultElement.innerText = 'The minimum investment is $30.';
+    resultElement.style.color = 'red';
     return;
   }
 
   const dailyRate = 1.5 / 100; // 1.5% daily ROI
   const monthlyRate = 45 / 100; // 45% ROI in 30 days
-  const twoMonthsRate = 90 / 100; // 90% ROI for 60 days (approx)
+  const twoMonthsRate = 90 / 100; // 90% ROI for 60 days
 
   let roi = 0;
   let periodText = '';
 
-  // Calculate ROI based on selected investment span
   if (investmentSpan === 30) {
-    roi = investment * (1 + monthlyRate); // 45% ROI for 30 days
+    roi = investment * (1 + monthlyRate);
     periodText = "30 days (45% ROI)";
-    result.style.color = 'green';
   } else if (investmentSpan === 60) {
-    roi = investment * (1 + twoMonthsRate); // 90% ROI for 60 days
+    roi = investment * (1 + twoMonthsRate);
     periodText = "60 days (90% ROI)";
-    result.style.color = 'green';
   } else if (investmentSpan === 90) {
-    roi = investment * (1 + 1.35); // Roughly 135% ROI for 3 months
+    roi = investment * (1 + 1.35); // 135% ROI
     periodText = "3 months (135% ROI)";
-    result.style.color = 'green';
   }
 
-  // Display Results
-  document.getElementById('result').innerHTML = `
+  resultElement.innerHTML = `
     <p>Total returns for ${periodText}: $${roi.toFixed(2)}</p>
   `;
+  resultElement.style.color = 'green';
 });

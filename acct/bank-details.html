@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="/css/bank-detail.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Profile</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/profile.html">Persona</a>
+                    <a href="/acct/bank-details.html">Bank Details</a>
+                </div>
+            </div>
+            <a href="/acct/payment.html">Payment</a>
+            <a href="#">Referral</a>
+            <a href="#">Verification</a>
+            <a href="#">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="content">
+        <h2>Bank Details</h2>
+            <div class="credit-card">
+                <div class="atm-card">
+                    <div class="card-header">
+                        <div class="chip"></div>
+                        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+                    </div>
+                    <div class="card-number">123456789</div>
+                    <div class="card-footer">
+                        <div class="card-holder">
+                            <p>oladele bolu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form id="bank-form">
+                <select name="account_type" id="account_type" onchange="toggleInputFields()">
+                    <option value="bank_account">Bank Account</option>
+                    <option value="crypto_wallet">Crypto Wallet</option>
+                </select>
+                <input type="text" id="account_number" name="account_number" placeholder="Account Number">
+                <input type="text" id="provider_name" name="provider_name" placeholder="Bank or Provider Name">
+                <select name="crypto_type" id="crypto_type" style="display: none;">
+                    <option value="usdt">USD Tether (USDT)</option>
+                    <option value="bitcoin">Bitcoin</option>
+                </select>
+                <input type="text" id="crypto_wallet_address" name="crypto_wallet_address" placeholder="Crypto Wallet Address" style="display: none;">
+            </form>
+            
+            <div class="cta">
+                <button onclick="saveBankDetails()">Save Changes</button>
+            </div>
+            
+            
+            
+
+    <script>
+        const API_BASE_URL = "https://backend-zna0.onrender.com"; // Replace with actual base URL
+        const token = localStorage.getItem("token"); // JWT token stored in local storage
+
+        if (!token) {
+        alert("User is not authenticated. Please log in.");
+        window.location.href = "/acct/signin.html";
+}
+
+async function saveBankDetails() {
+    const form = document.getElementById('bank-form');
+    const data = {
+        account_type: form.account_type.value,
+        account_number: form.account_number.value,
+        provider_name: form.provider_name.value,
+    };
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/users/accounts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error saving bank details: ${response.statusText}`);
+        }
+
+        alert("Bank details saved successfully!");
+    } catch (error) {
+        console.error(error);
+        alert("Failed to save bank details. Please try again.");
+    }
+}
+
+        function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = event.target.closest('.dropdown');
+        dropdown.classList.toggle('open');
+}
+        function toggleExtraInput() {
+        const accountType = document.getElementById('account_type').value;
+        const cryptoInput = document.getElementById('crypto_address');
+
+        if (accountType === 'crypto_wallet') {
+        cryptoInput.style.display = 'block';
+        } else {
+        cryptoInput.style.display = 'none';
+       }
+}
+
+function toggleInputFields() {
+    const accountType = document.getElementById('account_type').value;
+    const accountNumber = document.getElementById('account_number');
+    const providerName = document.getElementById('provider_name');
+    const cryptoType = document.getElementById('crypto_type');
+    const cryptoWalletAddress = document.getElementById('crypto_wallet_address');
+
+    if (accountType === 'crypto_wallet') {
+        // Show crypto fields
+        cryptoType.style.display = 'block';
+        cryptoWalletAddress.style.display = 'block';
+
+        // Hide bank fields
+        accountNumber.style.display = 'none';
+        providerName.style.display = 'none';
+    } else {
+        // Show bank fields
+        accountNumber.style.display = 'block';
+        providerName.style.display = 'block';
+
+        // Hide crypto fields
+        cryptoType.style.display = 'none';
+        cryptoWalletAddress.style.display = 'none';
+    }
+}
+
+
+    </script>
+</body>

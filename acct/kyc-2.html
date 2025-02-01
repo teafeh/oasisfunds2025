@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="/css/kyc-2.css">
+</head>
+<body>
+    <div class="sidebar">
+        <img src="/img/logo/logopg1.jpg" alt="Logo" class="logo">
+        <nav>
+            <a href="/acct/dashboard.html">Dashboard</a>
+            <a href="/acct/profile.html">Profile</a>
+            <a href="/acct/payment.html">Payment</a>
+            <a href="/acct/referral.html">Referral</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle active" onclick="toggleDropdown(event)">Verification</a>
+                <div class="dropdown-menu">
+                    <a href="/acct/kyc.html" id="persona-link">kyc</a>
+                    <a href="/acct/kyc-2.html" id="bank-details-link" ">kyc-2</a>
+                </div>
+            </div>
+            <a href="/acct/help.html">Help</a>
+        </nav>
+        <a href="#" class="logout">
+            <img src="/img/logout-icon.png" alt="Logout" class="logout-icon">
+        </a>
+    </div>
+
+    <div class="main-content">
+        <div class="user-profile">
+            <p id="username">Loading...</p>
+        </div>
+
+        <h1>Proof of Address</h1>
+        <p>Upload a proof of your address</p>
+        <p>MyOasisFunds requires a valid government-issued ID (Driver's license, Passport, National ID).</p>
+
+        <div class="form-container">
+            <form id="kyc-form">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Type your address" required>
+
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="">Select your country</option>
+                </select>
+
+                <label for="state">State</label>
+                <select id="state" name="state" required>
+                    <option value="">Select your state</option>
+                </select>
+
+                <button type="submit">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const apiBaseUrl = "https://your-api-endpoint.com"; // Replace with your actual API URL
+
+        function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdown = event.target.closest('.dropdown');
+    dropdown.classList.toggle('open');
+}
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const countrySelect = document.getElementById('country');
+            const stateSelect = document.getElementById('state');
+            const kycForm = document.getElementById('kyc-form');
+            const usernameDisplay = document.getElementById('username');
+
+            // Fetch user details (e.g., username)
+            async function fetchUserData() {
+                try {
+                    const response = await fetch(`${apiBaseUrl}/user/profile`);
+                    if (!response.ok) throw new Error("Failed to fetch user data.");
+                    const userData = await response.json();
+                    usernameDisplay.textContent = userData.username || "User";
+                } catch (error) {
+                    console.error(error);
+                    usernameDisplay.textContent = "User";
+                }
+            }
+
+            // Fetch available countries and states
+            async function fetchCountries() {
+                try {
+                    const response = await fetch(`${apiBaseUrl}/locations/countries`);
+                    if (!response.ok) throw new Error("Failed to fetch countries.");
+                    const countries = await response.json();
+
+                    countries.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.name;
+                        option.textContent = country.name;
+                        countrySelect.appendChild(option);
+                    });
+                } catch (error) {
+                    console.error(error);
+                    alert("An error occurred while fetching countries.");
+                }
+            }
+
+            // Populate states based on selected country
+            countrySelect.addEventListener('change', async () => {
+                const selectedCountry = countrySelect.value;
+                stateSelect.innerHTML = '<option value="">Select your state</option>';
+
+                if (selectedCountry) {
+                    try {
+                        const response = await fetch(`${apiBaseUrl}/locations/states?country=${selectedCountry}`);
+                        if (!response.ok) throw new Error("Failed to fetch states.");
+                        const states = await response.json();
+
+                        states.forEach(state => {
+                            const option = document.createElement('option');
+                            option.value = state.name;
+                            option.textContent = state.name;
+                            stateSelect.appendChild(option);
+                        });
+                    } catch (error) {
+                        console.error(error);
+                        alert("An error occurred while fetching states.");
+                    }
+                }
+            });
+
+            // Handle form submission
+            kycForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const formData = new FormData(kycForm);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch(`${apiBaseUrl}/kyc/submit`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) throw new Error("Failed to submit KYC data.");
+                    alert("KYC data submitted successfully.");
+                } catch (error) {
+                    console.error(error);
+                    alert("An error occurred while submitting your data.");
+                }
+            });
+
+            // Initialize the page
+            fetchUserData();
+            fetchCountries();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+    const logoutButton = document.querySelector('.logout');
+  
+    // Add event listener for the logout button
+    if (logoutButton) {
+      logoutButton.addEventListener('click', (e) => {
+        e.preventDefault();  // Prevent the default anchor behavior
+  
+        // Call the logout function
+        logout();
+      });
+    }
+  });
+  
+  // Logout function
+  function logout() {
+    // Remove token from localStorage (or sessionStorage if applicable)
+    localStorage.removeItem('token');  // or sessionStorage.removeItem('token');
+    
+    // Optionally clear other authentication-related data
+    // localStorage.removeItem('user'); // Example: remove user data
+  
+    // Redirect to the login page (or home page, depending on your setup)
+    window.location.href = '/acct/signin.html';  // Replace with the appropriate redirect URL
+  }
+    </script>
+</body>
+</html>

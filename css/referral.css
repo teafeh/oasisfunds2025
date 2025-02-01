@@ -1,0 +1,190 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+   font-family: Arial, sans-serif;
+   background-color: #0B1E2D;
+   color: white;
+   display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #102A44;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.sidebar nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: block;
+  background-color: #12395B;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.sidebar nav a:hover {
+  background-color: #1C5075;
+}
+
+.sidebar a.active {
+  background-color: #5eead4;
+  color: #102A44;
+  font-weight: bold;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.logout:hover {
+  color: #62e3b5;
+}
+
+.logout-icon {
+  color: #62e3b5;
+  width: 20px;
+  height: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #102A44; /* Card background color */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.referral-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0C4B6E; /* Darker card section */
+  border-radius: 10px;
+}
+
+.referral-section .input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.referral-section input {
+  background-color: #0b2239;
+  color: #E2E8F0;
+  border: 1px solid #62e3b5;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+.invite-button {
+  background-color: #34D399; /* Green button */
+  color: #0F172A;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.invite-button:hover {
+  background-color: #059669;
+}
+
+.how-it-works {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #0C4B6E;
+  border-radius: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 20px;
+  background-color: #0C4B6E;
+  border-radius: 10px;
+  flex: 1;
+  margin: 0 10px;
+}
+
+.referral-list {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #0C4B6E;
+}
+
+th {
+  background-color: #0C4B6E;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #0C4B6E;
+}
+
+.view-all {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.view-all a {
+  color: #34D399;
+  text-decoration: none;
+}
+
+.view-all a:hover {
+  text-decoration: underline;
+}

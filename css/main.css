@@ -636,13 +636,13 @@ main {
 /* Paragraph Styling */
 .destination-text p {
   font-size: 18px;
-  color: #666565;
+  color: #f4f4f4;
   margin-bottom: 20px;
 }
 
 .destination-text p:last-child {
   font-size: 16px;
-  color: #000000;
+  color: #f4f4f4;
   line-height: 1.6;
 }
 
@@ -692,47 +692,52 @@ main {
     color: #90cdf4;
 }
 
-.features {
+.testimonial-section {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(90deg, #4ecdc4, #3c91e6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+.testimonial-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+  
+.testimonial-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 40px 20px;
-    background: linear-gradient(90deg, #4ecdc4, #3c91e6);
 }
-
-.feature-card {
-    background: #004060;
-    color: #f4f4f4;
+  
+.testimonial {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark overlay */
     padding: 20px;
-    border-radius: 30px;
-    width: 30%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-    text-align: center;
+    border-radius: 10px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.feature-card:hover {
-    transform: translateY(-5px);
+  
+.testimonial:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
-
-.feature-card h2 {
-    font-size: 1.5rem;
-    color: #4ecdc4;
-    margin-bottom: 10px;
-    line-height: 1.2;
+  
+.quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #f4f4f4;
+    margin-bottom: 15px;
 }
-
-.feature-card h3 {
-    font-size: 2rem;
-    margin-bottom: 22px;
-    line-height: 1.2;
-}
-
-.feature-card p {
+  
+.author {
     font-size: 1rem;
-    line-height: 1.2;
-    margin-bottom: 30px;
+    font-weight: bold;
+    color: #333;
+    text-align: right;
 }
 
 /* Responsive Design */
@@ -747,14 +752,7 @@ main {
         font-size: 2rem;
     }
 
-    .features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-card {
-        width: 80%;
-    }
+    
 }
 
 @media (max-width: 480px) {
@@ -762,20 +760,10 @@ main {
         font-size: 1.5rem;
     }
 
-    .feature-card h2 {
-        font-size: 1.2rem;
-    }
-
-    .feature-card h3 {
-        font-size: 1.5rem;
-    }
-
-    .feature-card p {
-        font-size: 0.9rem;
-    }
+    
 }
 
-.quote{
+.invest-now{
     margin: 35px;
 }
 
@@ -828,6 +816,11 @@ main {
     line-height: 1.5;
 }
 .my-background-img{
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+    justify-content: center; /* Centers the items horizontally */
+    gap: 20px; /* Adds space between the items */
+    padding: 20px;
     position: relative;
     overflow: hidden;
     padding: 50px 0;
@@ -849,9 +842,9 @@ main {
     font-family: 'Poppins', sans-serif;
     color: #fff;
     min-height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    vertical-align: top; /* Optional: ensures both divs align at the top */
+    margin-right: 20px;
     padding: 10px;
 }
 
@@ -1038,9 +1031,70 @@ main {
   }
 }
 
-
-
-
+.credit-card {
+    padding: 2rem;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 50px;
+  }
+  
+  .atm-card {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, #3B82F6, #34D399);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    position: relative;
+  }
+  
+  .card-number {
+    font-weight: bolder;
+    font-size: 3rem; /* Adjusted for responsiveness */
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Calculator Styling */
+  .calculator-container {
+    background: #002b46;
+    color: #333;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Responsive Design: Mobile View */
+@media (max-width: 768px) {
+    .my-background-img {
+      flex-direction: column; /* Stack items vertically */
+      align-items: center; /* Center items horizontally */
+    }
+  
+    .credit-card {
+      margin: 10px 0; /* Add spacing between stacked items */
+      display: flex; /* Center content within the card */
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .atm-card {
+      margin: 0 auto; /* Center the card horizontally */
+    }
+  }
+  
 /* Sticky Button */
 .scroll-to-top-btn {
     position: fixed;

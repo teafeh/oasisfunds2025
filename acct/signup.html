@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - OasisFunds</title>
     <link rel="stylesheet" href="/css/signup.css">
 </head>
+
 <body>
     <!--header-->
     <header>
@@ -14,13 +16,11 @@
             <div class="logo">OasisFunds</div>
             <div class="nav-links">
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="/index.html">Home</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <a href="/signin.html" class="sign-in">SIGN IN</a>
-                    <a href="/signup.html" class="sign-up">SIGN UP</a>
+                    <button class="sign-in"><a href="/acct/signin.html">SIGN IN</a></button>
+                    <button class="sign-up"><a href="/acct/signup.html">SIGN UP</a></button>
                 </div>
             </div>
         </nav>
@@ -55,11 +55,29 @@
                         <input type="password" id="confirm-password" required />
                     </div>
                 </div>
+                <div class="input-row">
+                    <div class="input-block">
+                        <form id="country-form">
+                            <label for="country">Your Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select your country</option>
+                                <option value="canada">Canada</option>
+                                <option value="nigeria">Nigeria</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="usa">United States</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div class="input-block">
+                        <label for="referral">Referral (optional)</label>
+                        <input type="referral" id="referral" />
+                    </div>
+                </div>
                 <div class="checkbox-row">
                     <input type="checkbox" id="terms" required />
                     <label for="terms">
-                        I Agree to the 
-                        <a href="/term-condition.html">Terms</a> and 
+                        I Agree to the
+                        <a href="/term-condition.html">Terms</a> and
                         <a href="/privacy-policy.html">Privacy</a>
                     </label>
                 </div>
@@ -77,6 +95,8 @@
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirm-password").value;
+            const country = document.getElementById("country").value;
+            const referral = document.getElementById("referral").value;
 
             if (password !== confirmPassword) {
                 alert("Passwords do not match!");
@@ -95,6 +115,8 @@
                         username: `${firstName.toLowerCase()}${lastName.toLowerCase()}`,
                         email,
                         password,
+                        country,
+                        referral,
                     }),
                 });
 
@@ -103,7 +125,7 @@
                 if (response.ok) {
                     alert("Sign-up successful!");
                     // Redirect to login page
-                    window.location.href = "/signin.html";
+                    window.location.href = "/acct/signin.html";
                 } else {
                     alert(data.error || "Sign-up failed. Please try again.");
                 }
@@ -114,4 +136,5 @@
         });
     </script>
 </body>
+
 </html>
